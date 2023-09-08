@@ -1,17 +1,23 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Fabric() {
-  const description = "8oz Organic Sanded Twill"
-  const price = "$20.25 /yd"
-  const details = "This organic cotton has a fine twill with a soft sanded finish on one side."
+function Fabric(props) {
   return (
     <React.Fragment>
-      <h2>{description}</h2>
-      <h2>{price}</h2>
-      <h3>{details}</h3>
+      <h2>{props.description}</h2>
+      <h2>{props.price}</h2>
+      <h3>{props.details}</h3>
+      <h3>{props.yardsInStock}</h3>
       <hr />
     </React.Fragment>
   );
+}
+
+Fabric.propTypes = {
+  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  details: PropTypes.string.isRequired,
+  yardsInStock: PropTypes.number.isRequired
 }
 
 export default Fabric;
