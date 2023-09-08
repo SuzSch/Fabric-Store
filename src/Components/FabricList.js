@@ -1,5 +1,11 @@
 import React from "react";
 import Fabric from "./Fabric";
+import fabricImage1 from "./../img/CROSS-STITCH.webp";
+import fabricImage2 from  "./../img/FLURO-DOBBY.webp";
+import fabricImage3 from "./../img/LOOMSTATE-LINEN.webp";
+import fabricImage4 from "./../img/OILSKIN-CUMIN.webp";
+import fabricImage5 from "./../img/PLUM-SLUB.webp";
+import fabricImage6 from  "./../img/SANDED-TWILL.webp";
 
 const fabricsInStock = [
   {
@@ -7,7 +13,7 @@ const fabricsInStock = [
     price: 20.25,
     details: "This organic cotton has a fine twill with a soft sanded finish on one side.",
     yardsInStock: 39,
-    image: "../img/SANDED-TWILL.webp"
+    image: fabricImage6
 
   },
   {
@@ -15,7 +21,7 @@ const fabricsInStock = [
     price: 21.75,
     details: "A handloomed candy stripe of pale plum and natural with a loose weave and a washed out slubby texture.",
     yardsInStock: 54,
-    image: "./../img/PLUM-SLUB.webp"
+    image: fabricImage5
 
   },
   {
@@ -23,7 +29,7 @@ const fabricsInStock = [
     price: 51.50,
     details: "A high performing quilted cloth that is water resistant, temperature regulating and easy on the environment.",
     yardsInStock: 89,
-    image: "./../img/OILSKIN-CUMIN.webp"
+    image: fabricImage4
 
   },
   {
@@ -31,7 +37,7 @@ const fabricsInStock = [
     price: 19.00,
     details: "A unique mid weight Indian cotton in a warm khaki brown with cross stitch detailing in pale pink and green.",
     yardsInStock: 65,
-    image: "./../img/CROSS-STITCH.webp"
+    image: fabricImage1
 
   },
   {
@@ -39,7 +45,7 @@ const fabricsInStock = [
     price: 16.25,
     details: "A delicate dobby cotton in a natural ecru with tiny orange, yellow and blue fluorescent dots woven through.",
     yardsInStock: 167,
-    image: "./../img/FLURO-DOBBY.webp"
+    image: fabricImage2
 
   },
   {
@@ -47,7 +53,7 @@ const fabricsInStock = [
     price: 20.25,
     details: "A medium weight natural linen. Great for soft furnishings, curtains, blinds and upholstery when using a backing as it is ever so slightly see-through.",
     yardsInStock: 73,
-    image: "./../img/LOOMSTATE-LINEN.webp"
+    image: fabricImage3
 
   }
 
