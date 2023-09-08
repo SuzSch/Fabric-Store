@@ -10,20 +10,26 @@ class FabricInventoryControl extends React.Component {
       formVisableOnPage: false
     };
   }
+  handleClick = () => {
+    this.setState(prevState => ({
+      formVisableOnPage: !prevState.formVisableOnPage
+    }));
+  }
 
   render() {
     let currentlyVisibleState = null;
-    let addFabricButton = null;
+    let buttonText = null;
     if (this.state.formVisableOnPage) {
-      currentlyVisibleState = <NewFabricForm />
+      currentlyVisibleState = <NewFabricForm />;
+      buttonText = "Back to Fabric Inventory"
     } else {
       currentlyVisibleState = <FabricList />
-      addFabricButton= <button onClick={this.handleClick}>Add a new Fabric</button>
+      buttonText = "Add a New Fabric"
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {addFabricButton}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }

@@ -3,7 +3,11 @@ import React from "react";
 function NewFabricForm (props){
   return (
     <React.Fragment>
-      <h1>This is the form</h1>
+      <form onSubmit={handleNewFabricFormSubmission}>
+
+
+        
+      </form>
     </React.Fragment>
   );
 }
