@@ -11,8 +11,7 @@ function FabricDetail(props) {
       <h3>{fabric.description}</h3>
       <h3>{fabric.price}</h3>
       <h3>{fabric.details}</h3>
-      <h3>{fabric.yardInStock}</h3>
-      
+      <h3>{fabric.yardsInStock}</h3>
     </React.Fragment>
   );
 }

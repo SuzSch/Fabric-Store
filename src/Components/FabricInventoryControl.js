@@ -17,7 +17,7 @@ class FabricInventoryControl extends React.Component {
     if (this.state.selectedFabric != null) {
       this.setState({
         formVisableOnPage: false,
-        selectedFabric:null
+        selectedFabric: null
       });
     } else {
       this.setState(prevState => ({
@@ -32,9 +32,21 @@ class FabricInventoryControl extends React.Component {
   }
 
   handleChangingSelectedFabric = (id) => {
-    const selectedFabric = this.state.fabricsInStock.filter(fabric => fabric.id)[0];
+    const selectedFabric = this.state.fabricsInStock.filter(fabric => fabric.id === id)[0];
     this.setState({ selectedFabric: selectedFabric });
   }
+
+  handleSellingAYard = (fabricId) => {
+    this.setState((prevState) => {
+      const updatedFabrics = prevState.fabricsInStock.map((fabric) => {
+        if (fabric.id === fabricId && fabric.yardsInStock > 0) {
+          return { ...fabric, yardsInStock: fabric.yardsInStock - 1 };
+        }
+        return fabric;
+      });
+      return { fabricsInStock: updatedFabrics };
+    });
+  };
 
   render() {
     let currentlyVisibleState = null;
@@ -52,11 +64,13 @@ class FabricInventoryControl extends React.Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
+        {this.state.selectedFabric && (
+          <button onClick={() => this.handleSellingAYard(this.state.selectedFabric.id)}>Sell 1 yard of fabric</button>
+        )}
         <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
-
 }
 
 export default FabricInventoryControl;
