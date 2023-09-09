@@ -11,7 +11,7 @@ function NewFabricForm(props) {
     price: "",
     details: "",
     yardsInStock: "",
-    image: null,
+    image: "",
   });
 
   const handleInputChange = (event) => {
@@ -21,7 +21,16 @@ function NewFabricForm(props) {
 
   const handleImageChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFabricData({ ...fabricData, image: selectedFile });
+
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        setFabricData({ ...fabricData, image: event.target.result });
+      };
+
+      reader.readAsDataURL(selectedFile);
+    }
   };
 
   const handleNewFabricFormSubmission = (event) => {

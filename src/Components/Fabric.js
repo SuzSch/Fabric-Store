@@ -16,10 +16,10 @@ function Fabric(props) {
 
 Fabric.propTypes = {
   description: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
-  yardsInStock: PropTypes.number.isRequired,
-  image: PropTypes.object.isRequired
+  yardsInStock: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired
 }
 
 export default Fabric;

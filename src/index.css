@@ -15,3 +15,12 @@ code {
 h1 {
   text-align: center;
 }
+
+img {
+
+  width: 300px;
+  height: auto;
+  border: solid grey 10px;
+  padding: 8px;
+  border-radius: 20px;
+}
