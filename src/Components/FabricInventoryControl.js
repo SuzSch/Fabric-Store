@@ -8,12 +8,17 @@ class FabricInventoryControl extends React.Component {
     super(props);
     this.state = {
       formVisableOnPage: false
+      fabricsInStock: []
     };
   }
   handleClick = () => {
     this.setState(prevState => ({
       formVisableOnPage: !prevState.formVisableOnPage
     }));
+  }
+
+  onNewFabricAddition = () => {
+
   }
 
   render() {

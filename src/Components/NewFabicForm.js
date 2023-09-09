@@ -8,7 +8,8 @@ function NewFabricForm() {
         <input
           type="text"
           name="description"
-          placeholder="short description" />
+          placeholder="short description"
+          style={{ textTransform: "uppercase" }} />
 
         <input
           type="text"
@@ -24,18 +25,24 @@ function NewFabricForm() {
           name="yards"
           placeholder="How many yards to add?" />
 
-          <input
+        <input
           type="file"
-          name="image"                  
-          />
-          <button type="submit">Add Fabric</button>
+          name="image"
+          accept="image/*"
+        />
+
+        <button type="submit">Add Fabric</button>
       </form>
     </React.Fragment>
   );
 
   function handleNewFabricFormSubmission(event) {
     event.preventDefault();
-    console.log(event.target.description.value)
+    console.log(event.target.description.value);
+    console.log(event.target.price.value);
+    console.log(event.target.details.value);
+    console.log(event.target.yards.value);
+    console.log(event.target.image.value);
   }
 
 }
