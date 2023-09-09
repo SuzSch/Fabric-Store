@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { v4 } from "uuid";
 import "./NewFabricForm.css";
 
 
 function NewFabricForm(props) {
+
+  const [fabricData, setFabricData] = useState({
+    description: "",
+    price: "",
+    details: "",
+    yardsInStock: "",
+    image: null,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFabricData({ ...fabricData, [name]: value });
+  };
+
+  const handleImageChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFabricData({ ...fabricData, image: selectedFile });
+  };
+
+  const handleNewFabricFormSubmission = (event) => {
+    event.preventDefault();
+    props.onNewFabricCreation({
+      description: fabricData.description,
+      price: fabricData.price,
+      details: fabricData.details,
+      yardsInStock: fabricData.yardsInStock,
+      image: fabricData.image,
+      id: v4(),
+    });
+
+    setFabricData({
+      description: "",
+      details: "",
+      yardsInStock: "",
+      image: null,
+    });
+  };
+
   return (
     <React.Fragment>
       <hr />
@@ -15,7 +53,9 @@ function NewFabricForm(props) {
           type="text"
           name="description"
           placeholder="short description"
-          style={{ textTransform: "uppercase" }} />
+          style={{ textTransform: "uppercase" }}
+          value={fabricData.description}
+          onChange={handleInputChange} />
 
         <label>
           Price per yard
@@ -23,16 +63,24 @@ function NewFabricForm(props) {
         <input
           type="text"
           name="price"
-          placeholder="0.00" />
+          placeholder="0.00"
+          value={fabricData.price}
+          onChange={handleInputChange} />
 
         <textarea
           name="details"
-          placeholder="Add details about the fabric." />
+          placeholder="Add details about the fabric."
+          value={fabricData.details}
+          onChange={handleInputChange}
+        />
 
         <input
           type="text"
           name="yardsInStock"
-          placeholder="How many yards to add?" />
+          placeholder="How many yards to add?"
+          value={fabricData.yardsInStock}
+          onChange={handleInputChange}
+        />
 
         <label>
           Upload Image
@@ -41,6 +89,7 @@ function NewFabricForm(props) {
           type="file"
           name="image"
           accept="image/*"
+          onChange={handleImageChange}
         />
 
         <button type="submit">Add Fabric</button>
@@ -48,17 +97,6 @@ function NewFabricForm(props) {
     </React.Fragment>
   );
 
-  function handleNewFabricFormSubmission(event) {
-    event.preventDefault();
-    props.onNewFabricCreation({
-      description: event.target.description.value,
-      price: parseFloat(event.target.price.value),
-      details: event.target.details.value,
-      yardsInStock: parseFloat(event.target.yardsInStock.value),
-      image: event.target.image.value,
-      id: v4()
-    });
-  }
 }
 
 NewFabricForm.propTypes = {
