@@ -24,7 +24,7 @@ function NewFabricForm(props) {
 
         <input
           type="text"
-          name="yards"
+          name="yardsInStock"
           placeholder="How many yards to add?" />
 
         <input
@@ -42,9 +42,9 @@ function NewFabricForm(props) {
     event.preventDefault();
     props.onNewFabricCreation({
       description: event.target.description.value,
-      price: parseInt(event.target.price.value),
+      price: parseFloat(event.target.price.value),
       details: event.target.details.value,
-      yards: parseInt(event.target.yards.value),
+      yardsInStock: parseFloat(event.target.yardsInStock.value),
       image: event.target.image.value,
       id: v4()
     });
