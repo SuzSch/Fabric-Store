@@ -2,10 +2,11 @@ import React from "react";
 import Fabric from "./Fabric";
 import PropTypes from "prop-types";
 
+
 function FabricList(props) {
   return (
+    
     <React.Fragment>
-      <hr />
       {props.fabricList.map((fabric, index) =>
         <Fabric
           description={fabric.description}
@@ -16,6 +17,7 @@ function FabricList(props) {
           key={index} />
       )}
     </React.Fragment>
+ 
   );
 }
 

@@ -8,7 +8,8 @@ class FabricInventoryControl extends React.Component {
     super(props);
     this.state = {
       formVisableOnPage: false,
-      fabricsInStock: []
+      fabricsInStock: [],
+      selectedFabric: null
     };
   }
   handleClick = () => {
