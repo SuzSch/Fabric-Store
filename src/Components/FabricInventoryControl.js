@@ -1,6 +1,7 @@
 import React from "react";
 import NewFabricForm from "./NewFabicForm";
 import FabricList from "./FabricList";
+import FabricDetail from "./FabricDetail";
 
 class FabricInventoryControl extends React.Component {
 

@@ -7,11 +7,12 @@ function FabricDetail(props) {
   return (
     <React.Fragment>
       <h1>Fabric Details</h1>
+      <img src={fabric.image}/>
       <h3>{fabric.description}</h3>
       <h3>{fabric.price}</h3>
       <h3>{fabric.details}</h3>
       <h3>{fabric.yardInStock}</h3>
-      <h3>{fabric.image}</h3>
+      
     </React.Fragment>
   );
 }
