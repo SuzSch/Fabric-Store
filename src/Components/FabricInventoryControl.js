@@ -13,9 +13,16 @@ class FabricInventoryControl extends React.Component {
     };
   }
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisableOnPage: !prevState.formVisableOnPage
-    }));
+    if (this.state.selectedFabric != null) {
+      this.setState({
+        formVisableOnPage: false,
+        selectedFabric:null
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisableOnPage: !prevState.formVisableOnPage,
+      }));
+    }
   }
 
   handleAddingNewFabricToList = (newFabric) => {
