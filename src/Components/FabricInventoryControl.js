@@ -23,14 +23,22 @@ class FabricInventoryControl extends React.Component {
     this.setState({ fabricsInStock: newFabricsInStock, formVisableOnPage: false });
   }
 
+  handleChangingSelectedFabric = (id) => {
+    const selectedFabric = this.state.fabricsInStock.filter(fabric => fabric.id)[0];
+    this.setState({ selectedFabric: selectedFabric });
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisableOnPage) {
-      currentlyVisibleState = <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList}/>;
+    if (this.state.selectedFabric != null) {
+      currentlyVisibleState = <FabricDetail fabric={this.state.selectedFabric} />
       buttonText = "Back to Fabric Inventory"
+    } else if (this.state.formVisableOnPage) {
+      currentlyVisibleState = <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList} />;
+      buttonText = "Back to Fabric Inventory";
     } else {
-      currentlyVisibleState = <FabricList fabricList={this.state.fabricsInStock} />
+      currentlyVisibleState = <FabricList fabricList={this.state.fabricsInStock} onFabricSelection={this.handleChangingSelectedFabric} />;
       buttonText = "Add a New Fabric"
     }
     return (
