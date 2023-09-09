@@ -1,11 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
+import { v4 } from "uuid";
+import "./NewFabricForm.css";
+
 
 function NewFabricForm(props) {
   return (
     <React.Fragment>
-      <form onSubmit={handleNewFabricFormSubmission}>
+      <hr />
+      <h2>ADD A NEW FABRIC TO INVENTORY</h2>
+      <form onSubmit={handleNewFabricFormSubmission} className="fabric-form">
 
         <input
           type="text"
@@ -13,10 +17,13 @@ function NewFabricForm(props) {
           placeholder="short description"
           style={{ textTransform: "uppercase" }} />
 
+        <label>
+          Price per yard
+        </label>
         <input
           type="text"
           name="price"
-          placeholder="price per yard" />
+          placeholder="0.00" />
 
         <textarea
           name="details"
@@ -27,6 +34,9 @@ function NewFabricForm(props) {
           name="yardsInStock"
           placeholder="How many yards to add?" />
 
+        <label>
+          Upload Image
+        </label>
         <input
           type="file"
           name="image"
