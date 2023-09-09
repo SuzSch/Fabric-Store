@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { v4 } from 'uuid';
 
-function NewFabricForm() {
+function NewFabricForm(props) {
   return (
     <React.Fragment>
       <form onSubmit={handleNewFabricFormSubmission}>
@@ -38,12 +40,19 @@ function NewFabricForm() {
 
   function handleNewFabricFormSubmission(event) {
     event.preventDefault();
-    console.log(event.target.description.value);
-    console.log(event.target.price.value);
-    console.log(event.target.details.value);
-    console.log(event.target.yards.value);
-    console.log(event.target.image.value);
+    props.onNewFabricCreation({
+      description: event.target.description.value,
+      price: parseInt(event.target.price.value),
+      details: event.target.details.value,
+      yards: parseInt(event.target.yards.value),
+      image: event.target.image.value,
+      id: v4()
+    });
   }
-
 }
+
+NewFabricForm.propTypes = {
+  onNewFabricCreation: PropTypes.func
+};
+
 export default NewFabricForm;

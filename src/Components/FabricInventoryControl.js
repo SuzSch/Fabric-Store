@@ -7,7 +7,7 @@ class FabricInventoryControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisableOnPage: false
+      formVisableOnPage: false,
       fabricsInStock: []
     };
   }
@@ -17,18 +17,19 @@ class FabricInventoryControl extends React.Component {
     }));
   }
 
-  onNewFabricAddition = () => {
-
+  handleAddingNewFabricToList = (newFabric) => {
+    const newFabricsInStock = this.state.fabricsInStock.concat(newFabric);
+    this.setState({ fabricsInStock: newFabricsInStock, formVisableOnPage: false });
   }
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.formVisableOnPage) {
-      currentlyVisibleState = <NewFabricForm />;
+      currentlyVisibleState = <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList}/>;
       buttonText = "Back to Fabric Inventory"
     } else {
-      currentlyVisibleState = <FabricList />
+      currentlyVisibleState = <FabricList fabricList={this.state.fabricsInStock} />
       buttonText = "Add a New Fabric"
     }
     return (
