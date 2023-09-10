@@ -20,7 +20,7 @@ Fabric.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
-  yardsInStock: PropTypes.string.isRequired,
+  yardsInStock: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   whenFabricClicked: PropTypes.func
 };

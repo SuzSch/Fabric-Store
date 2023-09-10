@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function FabricDetail(props) {
-  const { fabric } = props;
+  const { fabric, onSellYard } = props;
+
+  const handleSellYard = () => {
+    if (fabric.yardsInStock >0) {
+      onSellYard();
+    }
+  }
 
   return (
     <React.Fragment>
@@ -12,6 +18,7 @@ function FabricDetail(props) {
       <h3>{fabric.price}</h3>
       <h3>{fabric.details}</h3>
       <h3>{fabric.yardsInStock}</h3>
+      <button onClick={handleSellYard}>Sell 1 yard of fabric</button>
     </React.Fragment>
   );
 }

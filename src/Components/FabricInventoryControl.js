@@ -27,6 +27,7 @@ class FabricInventoryControl extends React.Component {
   }
 
   handleAddingNewFabricToList = (newFabric) => {
+    newFabric.yardsInStock = parseInt(newFabric.yardsInStock);
     const newFabricsInStock = this.state.fabricsInStock.concat(newFabric);
     this.setState({ fabricsInStock: newFabricsInStock, formVisableOnPage: false });
   }
@@ -36,37 +37,54 @@ class FabricInventoryControl extends React.Component {
     this.setState({ selectedFabric: selectedFabric });
   }
 
-  handleSellingAYard = (fabricId) => {
-    this.setState((prevState) => {
-      const updatedFabrics = prevState.fabricsInStock.map((fabric) => {
-        if (fabric.id === fabricId && fabric.yardsInStock > 0) {
+  handleSellYard = () => {
+    if (this.state.selectedFabric != null && this.state.selectedFabric.yardsInStock > 0) {
+      const updatedFabrics = this.state.fabricsInStock.map((fabric) => {
+        if (fabric.id === this.state.selectedFabric.id) {
           return { ...fabric, yardsInStock: fabric.yardsInStock - 1 };
         }
         return fabric;
       });
-      return { fabricsInStock: updatedFabrics };
-    });
+
+      this.setState({
+        fabricsInStock: updatedFabrics,
+        selectedFabric: {
+          ...this.state.selectedFabric,
+          yardsInStock: this.state.selectedFabric.yardsInStock - 1,
+        },
+      });
+    }
   };
+
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.selectedFabric != null) {
-      currentlyVisibleState = <FabricDetail fabric={this.state.selectedFabric} />
-      buttonText = "Back to Fabric Inventory"
+      currentlyVisibleState = (
+        <FabricDetail
+          fabric={this.state.selectedFabric}
+          onSellYard={this.handleSellYard}
+        />
+      );
+      buttonText = "Back to Fabric Inventory";
     } else if (this.state.formVisableOnPage) {
-      currentlyVisibleState = <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList} />;
+      currentlyVisibleState = (
+        <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList} />
+      );
       buttonText = "Back to Fabric Inventory";
     } else {
-      currentlyVisibleState = <FabricList fabricList={this.state.fabricsInStock} onFabricSelection={this.handleChangingSelectedFabric} />;
-      buttonText = "Add a New Fabric"
+      currentlyVisibleState = (
+        <FabricList
+          fabricList={this.state.fabricsInStock}
+          onFabricSelection={this.handleChangingSelectedFabric}
+        />
+      );
+      buttonText = "Add a New Fabric";
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {this.state.selectedFabric && (
-          <button onClick={() => this.handleSellingAYard(this.state.selectedFabric.id)}>Sell 1 yard of fabric</button>
-        )}
         <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
