@@ -19,7 +19,8 @@ class FabricInventoryControl extends React.Component {
     if (this.state.selectedFabric != null) {
       this.setState({
         formVisableOnPage: false,
-        selectedFabric: null
+        selectedFabric: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -58,7 +59,7 @@ class FabricInventoryControl extends React.Component {
     }
   }
   handleEditClick = () => {
-    console.log("handleEditClick reached!");
+
     this.setState({ editing: true });
   }
 
@@ -79,7 +80,7 @@ class FabricInventoryControl extends React.Component {
     let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditFabricForm fabric={this.state.selectedFabric} />
+      currentlyVisibleState = <EditFabricForm fabric={this.state.selectedFabric} onEditFabric ={this.handleEditingFabricInList}/>
       buttonText = "Back to Fabric Inventory"
     } else if (this.state.selectedFabric != null) {
       currentlyVisibleState = (
@@ -92,7 +93,10 @@ class FabricInventoryControl extends React.Component {
       buttonText = "Back to Fabric Inventory";
     } else if (this.state.formVisableOnPage) {
       currentlyVisibleState = (
-        <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList} />
+        <NewFabricForm onNewFabricCreation={this.handleAddingNewFabricToList}
+          onEditFabric={this.handleEditingFabric}
+          buttonText={this.state.editing ? "Edit Fabric" : "Add Fabric"} 
+          initialData={this.state.selectedFabric} />
       );
       buttonText = "Back to Fabric Inventory";
     } else {

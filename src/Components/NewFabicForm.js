@@ -5,13 +5,20 @@ import "./NewFabricForm.css";
 
 
 function NewFabricForm(props) {
+  const initialData = props.initialData || {
+    description: "",
+    price: "",
+    details: "",
+    yardsInStock: "",
+    image: "",
+  };
 
   const [fabricData, setFabricData] = useState({
-    description: props.initialData.description,
-    price: props.initialData.price.toString(),
-    details: props.initialData.details,
-    yardsInStock: props.initialData.yardsInStock.toString(),
-    image: props.initialData.image,
+    description: initialData.description,
+    price: initialData.price,
+    details: initialData.details,
+    yardsInStock: initialData.yardsInStock,
+    image: initialData.image,
   });
 
   const handleInputChange = (event) => {
@@ -37,7 +44,7 @@ function NewFabricForm(props) {
     event.preventDefault();
     if (props.initialData) {
       props.onEditFabric({
-        id: props.initialData.id, 
+        id: props.initialData.id,
         description: fabricData.description,
         price: fabricData.price,
         details: fabricData.details,
@@ -57,18 +64,16 @@ function NewFabricForm(props) {
 
     setFabricData({
       description: "",
+      price: "",
       details: "",
       yardsInStock: "",
       image: null,
     });
   };
-// ...
-
 
   return (
+    
     <React.Fragment>
-      <hr />
-      <h2>ADD A NEW FABRIC TO INVENTORY</h2>
       <form onSubmit={handleNewFabricFormSubmission} className="fabric-form">
 
         <input
