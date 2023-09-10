@@ -10,7 +10,8 @@ class FabricInventoryControl extends React.Component {
     this.state = {
       formVisableOnPage: false,
       fabricsInStock: [],
-      selectedFabric: null
+      selectedFabric: null,
+      editing: false
     };
   }
   handleClick = () => {
@@ -54,8 +55,11 @@ class FabricInventoryControl extends React.Component {
         },
       });
     }
-  };
-
+  }
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({editing: true});
+  }
 
   render() {
     let currentlyVisibleState = null;
@@ -65,6 +69,7 @@ class FabricInventoryControl extends React.Component {
         <FabricDetail
           fabric={this.state.selectedFabric}
           onSellYard={this.handleSellYard}
+          onClickingEdit= {this.handleEditClick}
         />
       );
       buttonText = "Back to Fabric Inventory";
