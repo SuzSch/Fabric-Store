@@ -24,3 +24,7 @@ img {
   padding: 8px;
   border-radius: 20px;
 }
+
+img:hover {
+  cursor: pointer;
+}

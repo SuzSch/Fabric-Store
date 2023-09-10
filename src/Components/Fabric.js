@@ -5,12 +5,11 @@ function Fabric(props) {
   return (
     <React.Fragment>
       <div onClick={() => props.whenFabricClicked(props.id)}>
-      <img src={props.image} />
+      <img className="clickable" src={props.image} />
       <h2>{props.description}</h2>
       <h2>${props.price} per yard</h2>
       <h3>{props.details}</h3>
       <h3>Yards in stock: {props.yardsInStock}</h3>
-      <hr />
       </div>
     </React.Fragment>
     
