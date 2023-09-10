@@ -2,6 +2,7 @@ import React from "react";
 import NewFabricForm from "./NewFabicForm";
 import FabricList from "./FabricList";
 import FabricDetail from "./FabricDetail";
+import EditFabricForm from "./EditFabricForm";
 
 class FabricInventoryControl extends React.Component {
 
@@ -58,18 +59,34 @@ class FabricInventoryControl extends React.Component {
   }
   handleEditClick = () => {
     console.log("handleEditClick reached!");
-    this.setState({editing: true});
+    this.setState({ editing: true });
+  }
+
+  handleEditingFabricInList = (fabricToEdit) => {
+    const editedFabricsInStock = this.state.fabricsInStock
+    .filter(fabric => fabric.id !== this.state.selectedFabric.id)
+    .concat(fabricToEdit);
+    this.setState({
+      fabricsInStock: editedFabricsInStock,
+      editing: false,
+      selectedFabric: null
+    });
   }
 
   render() {
+
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.selectedFabric != null) {
+
+    if (this.state.editing) {
+      currentlyVisibleState = <EditFabricForm fabric={this.state.selectedFabric} />
+      buttonText = "Back to Fabric Inventory"
+    } else if (this.state.selectedFabric != null) {
       currentlyVisibleState = (
         <FabricDetail
           fabric={this.state.selectedFabric}
           onSellYard={this.handleSellYard}
-          onClickingEdit= {this.handleEditClick}
+          onClickingEdit={this.handleEditClick}
         />
       );
       buttonText = "Back to Fabric Inventory";
